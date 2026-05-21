@@ -5,7 +5,7 @@ import { faStar, faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 function Item(props) {
     return (
-        <div className="group relative w-44 md:w-64 bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden mb-6">
+        <div className="group relative w-44 md:w-64 bg-white hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden mb-6">
 
             {/* Wishlist Button (Floating) */}
             <button className="absolute top-3 right-3 z-10 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-400 hover:text-red-500 transition-colors shadow-sm opacity-100">
