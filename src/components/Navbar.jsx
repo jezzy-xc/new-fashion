@@ -19,7 +19,7 @@ function Navbar() {
   }
 
   return (
-    <div className='fixed top-0 w-full z-10'>
+    <div className='fixed top-0 w-full z-999'>
       <div className='h-20 overflow-hidden text-[14px] mx-auto flex justify-between items-center py-4 px-6 bg-white border-1 border-b-gray-300 border-solid'>
         <Link to="/">
           <img className='w-25' src={logo} alt="Logo" />
