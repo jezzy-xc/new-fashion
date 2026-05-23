@@ -13,7 +13,7 @@ function Shop() {
             <Popular />
             <Offer />
             <Collections />
-            <Newsletter />
+            {/* <Newsletter /> */}
 
         </div>
     )

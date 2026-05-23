@@ -7,8 +7,8 @@ function Item(props) {
     return (
         <div className="group relative w-44 md:w-64 bg-white hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden mb-6">
 
-            {/* Wishlist Button (Floating) */}
-            <button className="absolute top-3 right-3 z-10 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-400 hover:text-red-500 transition-colors shadow-sm opacity-100">
+            {/* Wishlist Button */}
+            <button className="absolute top-3 right-3 z-10 bg-transparent p-2 rounded-full text-gray-400 hover:text-red-500 transition-colors opacity-100">
                 <FontAwesomeIcon icon={faHeart} size="sm" />
             </button>
 
@@ -26,9 +26,14 @@ function Item(props) {
             {/* Content Section */}
             <div className="px-3 py-[3px]">
                 {/* Category & Rating */}
-                <div className="flex items-center justify-between mb-[3px]">
-                    <span className="text-[11px] font-300 uppercase tracking-wider text-gray-400  px-[2px] py-0.5 rounded">
+                <div className="flex items-center justify-between ">
+                    <span className="flex text-[10px] font-300 uppercase tracking-wider text-gray-400  px-[2px] py-0.5 ">
                         {props.category || "Mens"}
+                        <span className="text-gray-400  mx-3 text-[12px]" id="devider">•</span>
+
+                        <span className="text-[10px] font-medium text-green-500 flex items-center gap-1">
+                            In Stock
+                        </span>
                     </span>
 
                     <div className="flex items-center gap-1 text-yellow-500 text-xs">
@@ -51,12 +56,9 @@ function Item(props) {
 
                 {/* Price & Stock Section */}
                 <div className="mt-[3px] flex items-center justify-between">
-                    <div className="flex flex-col items-end">
-                        <span className="text-[10px] font-medium text-green-500 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                            In Stock
-                        </span>
-                    </div>
+                    {/* <div className="flex flex-col items-end">
+                        
+                    </div> */}
                     <div className="flex flex-col">
                         <span className="text-lg font-bold text-gray-900">${props.new_price}</span>
                         <span className="text-xs text-gray-400 line-through">${props.old_price}</span>
@@ -65,7 +67,7 @@ function Item(props) {
 
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import backgroundImage from '../assets/hero-3.png'
 
 function Offer() {
     return (
-        <div className='relative container my-40 mx-auto bg-cover bg-center w-full h-[550px]' style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className='relative container my-2 mx-auto bg-cover bg-center w-full h-[550px]' style={{ backgroundImage: `url(${backgroundImage})` }}>
             <div className="absolute inset-0 bg-black opacity-40"></div>
             <div className="hero absolute top-35 left-15">
                 <h1 className='font-medium text-6xl text-white leading-18'>Exclusive <br /> Offers For You</h1>
