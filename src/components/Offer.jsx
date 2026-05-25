@@ -3,12 +3,21 @@ import backgroundImage from '../assets/hero-3.png'
 
 function Offer() {
     return (
-        <div className='relative container my-2 mx-auto bg-cover bg-center w-full h-[550px]' style={{ backgroundImage: `url(${backgroundImage})` }}>
-            <div className="absolute inset-0 bg-black opacity-40"></div>
-            <div className="hero absolute top-35 left-15">
-                <h1 className='font-medium text-6xl text-white leading-18'>Exclusive <br /> Offers For You</h1>
-                <h2 className='font-bold text-[20px] text-white mt-4'>ONLY ON BEST SELLERS PRODUCTS</h2>
-                <a href="#"><button className='cursor-pointer font-medium text-white text-2xl mt-8 border-2 border-indigo-500 bg-indigo-500 rounded-full text-center w-60 h-13 hover:bg-transparent'>Check Now</button></a>
+        <div className='relative w-full h-[500px] bg-cover bg-center my-20' style={{ backgroundImage: `url(${backgroundImage})` }}>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/20"></div>
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col justify-center h-full max-w-[1200px] mx-auto px-4 md:px-8">
+                <h1 className='text-[40px] md:text-[60px] font-light text-white leading-[1.1] tracking-tighter mb-4'>
+                    Exclusive <br /> Offers For You
+                </h1>
+                <h2 className='text-[10px] font-light text-white uppercase tracking-[0.4em] mb-10'>
+                    Only on best sellers products
+                </h2>
+                <button className='w-fit px-10 py-4 border border-white text-white text-[10px] font-light uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300'>
+                    Check Now
+                </button>
             </div>
         </div>
     )

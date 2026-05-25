@@ -1,21 +1,26 @@
-import React from 'react'
-import backGroundImage from '../assets/hero-4.png'
-
+import React from 'react';
+import backGroundImage from '../assets/hero-4.png';
 
 function Header() {
   return (
-    <div className=' relative overflow-hidden min-h-screen mb-4 bg-cover bg-center w-full' style={{ backgroundImage: `url(${backGroundImage})` }}>
-      <div className="absolute inset-0 bg-black opacity-40"></div>
-      <div className="hero absolute top-40 left-15">
-        <h5 className='text-2xl font-bold md:font-bold md:text-3xl text-white'>NEW ARRIVALS ONLY</h5>
-        <h1 className='font-bold text-5xl md:font-bold md:text-7xl text-white leading-20 md:leading-23 '>New <br /> Collections <br /> For Everyone</h1>
-        <a href="#"><button className='cursor-pointer font-bold text-white text-2xl mt-10 border-2 border-indigo-500 bg-indigo-500 rounded-full text-center w-70 h-13 hover:bg-transparent'>Latest Collection {'>>>'}</button></a>
+    <div className='relative w-full h-screen overflow-hidden bg-cover bg-center' style={{ backgroundImage: `url(${backGroundImage})` }}>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30"></div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex flex-col justify-center h-full max-w-[1200px] mx-auto px-4 md:px-8">
+        <h5 className='text-[12px] font-light text-white uppercase tracking-[0.4em] mb-4'>
+          New Arrivals Only
+        </h5>
+        <h1 className='text-[40px] md:text-[80px] font-light text-white leading-[1.1] tracking-tighter mb-8'>
+          New Collections <br /> For Everyone
+        </h1>
+        <button className='w-fit px-10 py-4 border border-white text-white text-[10px] font-light uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300'>
+          Latest Collection
+        </button>
       </div>
     </div>
-
-
-
-  )
+  );
 }
 
-export default Header
+export default Header;

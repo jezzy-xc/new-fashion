@@ -1,24 +1,23 @@
-import React from 'react'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import Shop from './components/Shop'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ShopCategory from './components/ShopCategory'
-import Cart from './components/Cart'
-import SignupLogin from './components/SignupLogin'
-import Product from './components/Product'
-import MensBanner from './assets/mens-banner.png'
-import WomensBanner from './assets/womens-banner.png'
-import KidsBanner from './assets/kids-banner.png'
-import Signup from './components/Signup'
-
-
+import React from 'react';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import Shop from './components/Shop';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ShopCategory from './components/ShopCategory';
+import Cart from './components/Cart';
+import SignupLogin from './components/SignupLogin';
+import Product from './components/Product';
+import MensBanner from './assets/mens-banner.png';
+import WomensBanner from './assets/womens-banner.png';
+import KidsBanner from './assets/kids-banner.png';
+import Signup from './components/Signup';
+import Checkout from './components/Proceed';
+import Payment from './components/Payment'; // 
 
 
 function App() {
   return (
     <div>
-
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -30,11 +29,14 @@ function App() {
           <Route path='/Login' element={<SignupLogin />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Product/:ProductId' element={<Product />} />
+          <Route path='/Checkout' element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

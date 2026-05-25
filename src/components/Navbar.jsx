@@ -1,88 +1,74 @@
-import React, { useContext, useRef, useState } from 'react'
-import logo from '../assets/logo-2.png'
+import React, { useContext, useState } from 'react'
+
 import icon from '../assets/shopping-cart.png'
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark, faSearch, faSliders, faMagnifyingGlass, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faMagnifyingGlass, faSliders, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
-
   const [menu, setMenu] = useState("shop");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const { getTotalCartItems, searchTerm, setSearchTerm } = useContext(ShopContext);
-  const menuRef = useRef();
-
-  const dropdownMenu = () => {
-    menuRef.current.classList.toggle('nav-bar-on');
-    setIsMenuOpen(prev => !prev);
-  }
 
   return (
-    <div className='fixed top-0 w-full z-999'>
-      <div className='h-20 overflow-hidden text-[14px] mx-auto flex justify-between items-center py-4 px-[3px] bg-white border-1 border-b-gray-300 border-solid'>
-        <Link to="/">
-          <img className='w-25' src={logo} alt="Logo" />
+    <nav className='fixed top-0 w-full z-50 bg-white border-b border-gray-100'>
+      <div className='max-w-[1200px] mx-auto h-20 flex justify-between items-center px-4'>
+
+        {/* Logo */}
+<Link 
+          to="/" 
+          onClick={() => setMenu("shop")}
+          className="text-[18px] font-bold tracking-[0.4em] uppercase"
+        >
+          Zentryx<span className="text-gray-300">.</span>
         </Link>
-
         {/* Search Bar */}
-        <div className="flex items-center w-full max-w-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full focus-within:bg-white focus-within:border-indigo-500 focus-within:shadow-sm transition-all duration-300">
-
-          {/* left side: magnifying glass) */}
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-400 mr-2 text-xs" />
-
-          {/* input */}
+        <div className="hidden md:flex items-center w-64 bg-gray-50 border border-gray-100 px-4 py-2">
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-300 text-[10px] mr-3" />
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-transparent outline-none text-xs text-gray-700 placeholder-gray-400"
+            className="w-full bg-transparent outline-none text-[10px] font-light uppercase tracking-[0.2em] text-gray-800 placeholder-gray-300"
           />
+        </div>
 
-          {/* divider */}
-          <span className="h-4 w-[1px] bg-gray-300 mx-2"></span>
+        {/* Desktop Menu */}
+        <ul className='hidden md:flex gap-10 text-[10px] font-light uppercase tracking-[0.3em] text-gray-500'>
+          {["shop", "mens", "womens", "kids"].map((item) => (
+            <li key={item} className="cursor-pointer hover:text-black transition-all">
+              <Link to={item === "shop" ? "/" : `/${item.charAt(0).toUpperCase() + item.slice(1)}`} onClick={() => setMenu(item)}>
+                {item}
+              </Link>
+              {menu === item && <div className='h-[1px] bg-black mt-1'></div>}
+            </li>
+          ))}
+        </ul>
 
-          {/* filter icon on right side */}
-          <button
-            type="button"
-            className="text-gray-400 hover:text-indigo-600 active:scale-90 transition-all cursor-pointer flex items-center justify-center"
-          >
-            <FontAwesomeIcon icon={faSliders} className="text-xs" />
+        {/* Right Side Icons */}
+        <div className='flex items-center gap-6 text-[12px] text-gray-800'>
+          <Link to="/Wishlist" className="hover:text-black transition-all"><FontAwesomeIcon icon={faHeart} /></Link>
+
+          <Link to="/Cart" className="relative">
+            <img src={icon} alt="Cart" className='w-4' />
+            {getTotalCartItems() > 0 && (
+              <span className='absolute -top-2 -right-2 text-[8px] font-bold bg-black text-white w-3 h-3 flex items-center justify-center rounded-full'>
+                {getTotalCartItems()}
+              </span>
+            )}
+          </Link>
+
+          <Link to="/Login" className="hover:text-black transition-all"><FontAwesomeIcon icon={faUser} /></Link>
+
+          <button className='md:hidden' onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
           </button>
         </div>
-        <ul className='nav-menu hidden md:flex space-x-8' ref={menuRef}>
-          <li className='nav-item' onClick={() => { setMenu("shop") }}><Link to="/">Shop</Link>{menu === "shop" && <div className='active'></div>}</li>
-          <li className='nav-item' onClick={() => { setMenu("mens") }}><Link to="/Mens">Mens</Link>{menu === "mens" && <div className='active'></div>}</li>
-          <li className='nav-item' onClick={() => { setMenu("womens") }}><Link to="/Womens">Womens</Link> {menu === "womens" && <div className='active'></div>}</li>
-          <li className='nav-item' onClick={() => { setMenu("kids") }}><Link to="/Kids">Kids</Link>{menu === "kids" && <div className='active'></div>}</li>
-        </ul>
-        <div className='flex items-center space-x-3 md:space-x-8'>
-          <div className="flex relative">
-            {/* wishlist icon */}
-            <button className=' mr-3'> <FontAwesomeIcon icon={faHeart} size="xl" />
-            </button>
-            <div className="">
-              <Link to="/Cart"><img src={icon} alt="" className='w-6 h-6' /></Link>
-              <span className='absolute bottom-4 right-[-8px] rounded-full text-[12px] bg-gray-300 text-white text-center w-4 h-4 text-gray-400'>{getTotalCartItems()}</span>
-            </div>
-          </div>
-          <Link to="/Login">
-            {/* <button className='cursor-pointer rounded-full border-2 border-gray-300 px-2.5 md:px-3 py-1 hover:bg-gray-400 hover:text-white transition-all duration-[600ms]'>
-              Login
-            </button> */}
-            <button>
-              <FontAwesomeIcon icon={faUser} size="xl" />
-            </button>
-          </Link>
-          <FontAwesomeIcon className='bar cursor-pointer text-3xl hover:text-gray-300' icon={isMenuOpen ? faXmark : faBars} onClick={dropdownMenu} />
-        </div>
       </div>
-    </div>
+    </nav>
   );
-
 }
 
-
-export default Navbar
+export default Navbar;
