@@ -8,7 +8,7 @@ function ProductDisplay(props) {
   const { addToCart } = useContext(ShopContext);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8 mt-15">
+    <div className="max-w-7xl mx-auto p-4 md:pr-8">
       <div className="flex flex-col md:flex-row gap-10 lg:gap-16">
 
         {/* Left Side Photo Section */}

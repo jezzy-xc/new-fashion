@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react';
+// সঠিক পাথ: src/service/supabaseClient.js
+import { supabase } from '../../service/supabaseClient';
 
 const ListProduct = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // স্যাম্পল ডেটা (API এর পরিবর্তে এটি দিয়ে টেস্ট করুন)
-        const sampleProducts = [
-            { id: 1, name: "ESSENTIAL CREWNECK", new_price: "45.00", category: "Mens" },
-            { id: 2, name: "OVERSIZED HOODIE", new_price: "65.00", category: "Mens" },
-            { id: 3, name: "BASIC DENIM JACKET", new_price: "85.00", category: "Womens" },
-            { id: 4, name: "MINIMALIST TEE", new_price: "25.00", category: "Kids" },
-            { id: 5, name: "CASHMERE SWEATER", new_price: "120.00", category: "Womens" }
-        ];
-
-        // যদি API থেকে ডেটা না আসে, তবে স্যাম্পল ডেটা সেট করবে
-        setProducts(sampleProducts);
-
-        /* প্রোডাকশন মোডে API কল করার জন্য এটি ব্যবহার করবেন:
-        fetch('http://localhost:5000/api/products')
-            .then(res => res.json())
-            .then(data => setProducts(data));
-        */
+        fetchProducts();
     }, []);
+
+    const fetchProducts = async () => {
+        try {
+            // Supabase থেকে প্রোডাক্ট ডাটা আনা
+            const { data, error } = await supabase
+                .from('products')
+                .select('*');
+
+            if (error) {
+                console.error("Error fetching products:", error);
+            } else {
+                setProducts(data || []);
+            }
+        } catch (err) {
+            console.error("Unexpected error:", err);
+        }
+    };
 
     return (
         <div className="w-full">
@@ -40,21 +43,30 @@ const ListProduct = () => {
                     </tr>
                 </thead>
                 <tbody className="text-[10px] uppercase tracking-[0.1em]">
-                    {products.map((item) => (
-                        <tr key={item.id} className="group hover:bg-gray-50 transition-all">
-                            <td className="py-6 border-b border-gray-50">{item.name}</td>
-                            <td className="py-6 border-b border-gray-50 text-gray-500">{item.category}</td>
-                            <td className="py-6 border-b border-gray-50">${item.new_price}</td>
-                            <td className="py-6 border-b border-gray-50 text-right">
-                                <button className="text-gray-400 hover:text-black transition-all underline decoration-1 underline-offset-4">
-                                    Edit
-                                </button>
+                    {products.length > 0 ? (
+                        products.map((item) => (
+                            <tr key={item.id} className="group hover:bg-gray-50 transition-all">
+                                <td className="py-6 border-b border-gray-50">{item.name}</td>
+                                <td className="py-6 border-b border-gray-50 text-gray-500">{item.category}</td>
+                                <td className="py-6 border-b border-gray-50">${item.new_price}</td>
+                                <td className="py-6 border-b border-gray-50 text-right">
+                                    <button className="text-gray-400 hover:text-black transition-all underline decoration-1 underline-offset-4">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" className="py-10 text-center text-gray-400 uppercase tracking-[0.2em]">
+                                No products found
                             </td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>
     );
 };
+
 export default ListProduct;

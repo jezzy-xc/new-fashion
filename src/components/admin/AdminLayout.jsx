@@ -11,6 +11,7 @@ const AdminLayout = () => {
                     <Link to="/admin/dashboard" className="hover:text-black">Dashboard</Link>
                     <Link to="/admin/addproduct" className="hover:text-black">Add Product</Link>
                     <Link to="/admin/listproduct" className="hover:text-black">Product List</Link>
+                    <Link to="/admin/inventorymanager" className="hover:text-black">Inventory</Link>
                     <Link to="/admin/orders" className="hover:text-black">Orders</Link>
                 </nav>
             </div>

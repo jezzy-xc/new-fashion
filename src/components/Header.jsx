@@ -15,7 +15,7 @@ function Header() {
         <h1 className='text-[40px] md:text-[80px] font-light text-white leading-[1.1] tracking-tighter mb-8'>
           New Collections <br /> For Everyone
         </h1>
-        <button className='w-fit px-10 py-4 border border-white text-white text-[10px] font-light uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300'>
+        <button className='w-fit px-10 py-4 cursor-pointer border border-white text-white text-[10px] font-light uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300'>
           Latest Collection
         </button>
       </div>

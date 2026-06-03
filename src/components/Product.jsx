@@ -19,7 +19,7 @@ function Product() {
 
   return (
     <div className='container mx-auto'>
-      {/* <BreadCrum product={product} /> */}
+      <BreadCrum product={product} />
       <ProductDisplay product={product} />
       <DiscriptionBox />
       <RelatedProduct />
